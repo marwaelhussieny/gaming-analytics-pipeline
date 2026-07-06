@@ -1,0 +1,22 @@
+.env
+profiles.yml
+data/raw/*.json
+!data/raw/.gitkeep
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+dbt/gaming_analytics/target/
+dbt/gaming_analytics/dbt_packages/
+dbt/gaming_analytics/logs/
+
+.DS_Store
+
+# Airflow local runtime
+logs/*
+!logs/.gitkeep
+airflow.cfg
+airflow.db
+webserver_config.py

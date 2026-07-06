@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: player_counts
+        description: "Raw Steam API player count payloads, loaded as VARIANT JSON"
+        loaded_at_field: _loaded_at
+        freshness:
+          warn_after: {count: 26, period: hour}
+          error_after: {count: 48, period: hour}
+
+models:
+  - name: stg_player_counts
+    description: "One row per game per fetch, flattened from raw JSON"
+    columns:
+      - name: app_id
+        description: "Steam AppID, unique identifier for the game"
+        tests:
+          - not_null
+      - name: game_name
+        tests:
+          - not_null
+      - name: player_count
+        tests:
+          - not_null
+      - name: fetched_at
+        tests:
+          - not_null

@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: trending_games
+    description: "Daily player count trends per game, with day-over-day change. Consumed directly by the dashboard."
+    columns:
+      - name: app_id
+        tests:
+          - not_null
+      - name: report_date
+        tests:
+          - not_null
+      - name: peak_player_count
+        tests:
+          - not_null
+      - name: day_over_day_pct_change
+        description: "Null on a game's first observed day (no prior day to compare against)"
+
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - app_id
+            - report_date

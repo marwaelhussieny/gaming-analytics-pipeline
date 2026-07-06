@@ -19,7 +19,7 @@ flowchart LR
     F -->|dbt: marts| G[trending_games]
     G --> H[Dashboard /<br/>BI layer]
 
-    subgraph Orchestration - Airflow DAG, daily
+    subgraph Orchestration["Orchestration - Airflow DAG, daily"]
         B
         C
         D
